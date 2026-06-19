@@ -1,0 +1,17 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+
+# Scratch / personal
+cv/Nueva carpeta/
+cv/*Unicaja*
+
+# OS
+Thumbs.db
+.DS_Store
+desktop.ini

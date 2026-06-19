@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carlos Molina Martínez — Data Engineer · Industrial Engineering & AI</title>
+<meta name="description" content="Portfolio of Carlos Molina Martínez — Energy Engineer transitioning into Data Engineering. Double Master's in Industrial Engineering & AI. Python, ML, data pipelines for energy and industry.">
+<meta property="og:title" content="Carlos Molina Martínez — Data & Industrial AI Engineer">
+<meta property="og:description" content="Energy engineering foundations, data engineering ambitions. Python · ML · Industrial Analytics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230B0E12'/><text x='50' y='68' font-size='52' text-anchor='middle' fill='%23FFB100' font-family='monospace' font-weight='bold'>CM</text></svg>">
+<style>
+:root{
+  --bg:#0B0E12;
+  --bg-raise:#11151B;
+  --bg-card:#141923;
+  --line:#222A36;
+  --line-soft:#1A212C;
+  --ink:#E8ECF1;
+  --ink-dim:#9AA5B4;
+  --ink-faint:#5C6878;
+  --amber:#FFB100;
+  --amber-soft:rgba(255,177,0,.12);
+  --cyan:#39C5CF;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --sans:'Archivo',system-ui,sans-serif;
+  --maxw:1120px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+/* blueprint grid backdrop */
+body::before{
+  content:"";
+  position:fixed;inset:0;z-index:-2;
+  background-image:
+    linear-gradient(var(--line-soft) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line-soft) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,black 30%,transparent 80%);
+}
+body::after{ /* grain */
+  content:"";
+  position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection{background:var(--amber);color:#0B0E12}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+
+/* ============ NAV ============ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(11,14,18,.82);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav-inner{
+  max-width:var(--maxw);margin:0 auto;padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.logo{font-family:var(--mono);font-size:16px;letter-spacing:.06em;color:var(--ink);display:flex;align-items:baseline;gap:8px}
+.logo b{color:var(--amber);font-weight:600}
+.logo .logo-sub{font-size:11.5px;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase}
+.nav-links{display:flex;gap:26px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.nav-links a{color:var(--ink-dim);transition:color .2s}
+.nav-links a:hover{color:var(--amber)}
+.nav-cta{
+  font-family:var(--mono);font-size:12px;letter-spacing:.06em;
+  border:1px solid var(--amber);color:var(--amber);
+  padding:7px 14px;border-radius:3px;transition:all .2s;white-space:nowrap;
+}
+.nav-cta:hover{background:var(--amber);color:#0B0E12}
+@media(max-width:760px){.nav-links{display:none}}
+
+/* ============ HERO ============ */
+header{
+  min-height:92vh;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;
+  padding-top:90px;
+}
+.status-pill{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--amber);
+  border:1px solid rgba(255,177,0,.35);
+  background:var(--amber-soft);
+  padding:7px 16px;border-radius:99px;
+  width:fit-content;
+  animation:rise .7s .1s both;
+}
+.status-pill .dot{
+  width:7px;height:7px;border-radius:50%;background:var(--amber);
+  box-shadow:0 0 0 0 rgba(255,177,0,.6);
+  animation:pulse 2.2s infinite;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(255,177,0,.55)}
+  70%{box-shadow:0 0 0 9px rgba(255,177,0,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,177,0,0)}
+}
+h1{
+  font-size:clamp(46px,8.4vw,108px);
+  font-weight:800;
+  font-stretch:115%;
+  line-height:.98;
+  letter-spacing:-.02em;
+  margin:28px 0 10px;
+  animation:rise .7s .22s both;
+}
+h1 .accent{color:var(--amber)}
+.hero-sub{
+  font-size:clamp(17px,2.2vw,22px);
+  color:var(--ink-dim);
+  max-width:680px;
+  animation:rise .7s .34s both;
+}
+.hero-sub b{color:var(--ink);font-weight:600}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:26px;
+  margin-top:42px;
+  font-family:var(--mono);font-size:13px;color:var(--ink-faint);
+  animation:rise .7s .46s both;
+}
+.hero-meta span b{color:var(--ink-dim);font-weight:500}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px;animation:rise .7s .58s both}
+.btn{
+  font-family:var(--mono);font-size:13.5px;letter-spacing:.05em;
+  padding:13px 26px;border-radius:3px;
+  border:1px solid var(--line);
+  color:var(--ink);
+  transition:all .22s;
+  display:inline-flex;align-items:center;gap:9px;
+}
+.btn:hover{border-color:var(--ink-dim);transform:translateY(-2px)}
+.btn-primary{background:var(--amber);border-color:var(--amber);color:#0B0E12;font-weight:600}
+.btn-primary:hover{background:#ffc233;border-color:#ffc233;box-shadow:0 8px 28px -8px rgba(255,177,0,.45)}
+/* telemetry line */
+.telemetry{
+  position:absolute;left:0;right:0;bottom:0;height:120px;
+  opacity:.55;pointer-events:none;overflow:hidden;
+}
+.telemetry svg{width:200%;height:100%;animation:scroll-x 14s linear infinite}
+@keyframes scroll-x{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============ SECTIONS ============ */
+section{padding:96px 0;border-top:1px solid var(--line-soft);position:relative}
+.sec-label{
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--amber);display:flex;align-items:center;gap:14px;margin-bottom:18px;
+}
+.sec-label::after{content:"";height:1px;width:64px;background:linear-gradient(90deg,var(--amber),transparent)}
+h2{
+  font-size:clamp(30px,4.4vw,48px);
+  font-weight:750;font-stretch:110%;
+  letter-spacing:-.015em;line-height:1.08;
+  margin-bottom:34px;max-width:760px;
+}
+h2 .dim{color:var(--ink-faint)}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ============ PROFILE ============ */
+.profile-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:60px;align-items:start}
+.profile-text p{color:var(--ink-dim);margin-bottom:18px;font-size:17.5px}
+.profile-text p b{color:var(--ink);font-weight:600}
+.fact-stack{display:flex;flex-direction:column;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+.fact{
+  background:var(--bg-raise);padding:18px 22px;
+  display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+}
+.fact .k{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+.fact .v{font-size:15px;font-weight:500;text-align:right}
+.fact .v em{font-style:normal;color:var(--amber)}
+@media(max-width:860px){.profile-grid{grid-template-columns:1fr;gap:40px}}
+
+/* ============ STACK ============ */
+.stack-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.stack-card{
+  background:var(--bg-card);border:1px solid var(--line-soft);
+  border-radius:6px;padding:28px;
+  transition:border-color .25s,transform .25s;
+  position:relative;overflow:hidden;
+}
+.stack-card::before{
+  content:attr(data-num);
+  position:absolute;top:18px;right:22px;
+  font-family:var(--mono);font-size:12px;color:var(--ink-faint);
+}
+.stack-card:hover{border-color:rgba(255,177,0,.4);transform:translateY(-3px)}
+.stack-card h3{font-size:19px;font-weight:650;margin-bottom:6px}
+.stack-card .desc{font-size:14.5px;color:var(--ink-faint);margin-bottom:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{
+  font-family:var(--mono);font-size:12.5px;
+  background:var(--bg-raise);border:1px solid var(--line);
+  color:var(--ink-dim);
+  padding:5px 12px;border-radius:3px;
+}
+.chip.hot{border-color:rgba(255,177,0,.45);color:var(--amber);background:var(--amber-soft)}
+@media(max-width:760px){.stack-grid{grid-template-columns:1fr}}
+
+/* ============ TIMELINE ============ */
+.timeline{position:relative;margin-left:8px}
+.timeline::before{
+  content:"";position:absolute;left:0;top:6px;bottom:6px;width:1px;
+  background:linear-gradient(var(--amber),var(--line) 40%,var(--line));
+}
+.titem{position:relative;padding:0 0 46px 38px}
+.titem:last-child{padding-bottom:0}
+.titem::before{
+  content:"";position:absolute;left:-5px;top:7px;
+  width:11px;height:11px;border-radius:50%;
+  background:var(--bg);border:2px solid var(--ink-faint);
+}
+.titem.now::before{border-color:var(--amber);background:var(--amber);box-shadow:0 0 14px rgba(255,177,0,.55)}
+.titem .when{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;color:var(--amber);text-transform:uppercase}
+.titem h3{font-size:21px;font-weight:650;margin:6px 0 2px}
+.titem .where{font-size:14.5px;color:var(--ink-faint);font-family:var(--mono);margin-bottom:10px}
+.titem p{color:var(--ink-dim);font-size:15.5px;max-width:720px}
+.titem ul{margin:10px 0 0;padding-left:18px;color:var(--ink-dim);font-size:15px;max-width:720px}
+.titem li{margin-bottom:6px}
+.titem li::marker{color:var(--amber)}
+
+/* ============ PROJECTS ============ */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.proj{
+  background:var(--bg-card);border:1px solid var(--line-soft);border-radius:6px;
+  padding:26px;display:flex;flex-direction:column;gap:14px;
+  transition:border-color .25s,transform .25s;
+}
+.proj:hover{border-color:rgba(57,197,207,.5);transform:translateY(-3px)}
+.proj .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.proj h3{font-size:19px;font-weight:650;line-height:1.25}
+.proj p{font-size:14.5px;color:var(--ink-dim);flex:1}
+.proj .plink{font-family:var(--mono);font-size:13px;color:var(--amber);display:inline-flex;gap:8px;align-items:center}
+.proj .plink:hover{text-decoration:underline}
+.proj.ghost{
+  border-style:dashed;border-color:var(--line);background:transparent;
+  align-items:center;justify-content:center;text-align:center;color:var(--ink-faint);
+}
+.proj.ghost .big{font-size:30px;color:var(--line);font-weight:300}
+@media(max-width:860px){.proj-grid{grid-template-columns:1fr}}
+
+/* ============ CAROUSEL / FIELD NOTES ============ */
+.car-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:34px}
+.car-nav{display:flex;gap:10px}
+.car-btn{
+  width:46px;height:46px;border-radius:3px;cursor:pointer;
+  border:1px solid var(--line);background:var(--bg-raise);color:var(--ink-dim);
+  font-size:18px;display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.car-btn:hover{border-color:var(--amber);color:var(--amber)}
+.carousel{
+  display:flex;gap:22px;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  padding:4px 4px 22px;
+  scrollbar-width:none;
+}
+.carousel::-webkit-scrollbar{display:none}
+.slide{
+  flex:0 0 min(420px,86vw);
+  scroll-snap-align:start;
+  background:var(--bg-card);border:1px solid var(--line-soft);border-radius:6px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  transition:border-color .25s;
+}
+.slide:hover{border-color:rgba(255,177,0,.4)}
+.slide .ph{position:relative;aspect-ratio:16/9;overflow:hidden}
+.slide .ph img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;filter:saturate(.92)}
+.slide:hover .ph img{transform:scale(1.045)}
+.slide .ph .date{
+  position:absolute;top:12px;left:12px;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
+  background:rgba(11,14,18,.85);border:1px solid var(--line);
+  color:var(--amber);padding:5px 11px;border-radius:3px;backdrop-filter:blur(4px);
+}
+.slide .body{padding:22px 24px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.slide .kind{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.slide h3{font-size:19px;font-weight:650;line-height:1.3}
+.slide p{font-size:14.5px;color:var(--ink-dim);flex:1}
+.slide .more{font-family:var(--mono);font-size:12.5px;color:var(--amber)}
+.slide .more:hover{text-decoration:underline}
+.car-dots{display:flex;gap:8px;justify-content:center;margin-top:8px}
+.car-dots .d{width:22px;height:3px;background:var(--line);border-radius:2px;transition:background .3s}
+.car-dots .d.on{background:var(--amber)}
+
+/* ============ TARGETS ============ */
+.targets{display:flex;flex-wrap:wrap;gap:10px;max-width:900px}
+.target{
+  font-family:var(--mono);font-size:13px;
+  border:1px solid var(--line);color:var(--ink-dim);
+  padding:8px 16px;border-radius:99px;
+  transition:all .2s;cursor:default;
+}
+.target:hover{border-color:var(--amber);color:var(--amber);background:var(--amber-soft)}
+.targets-note{font-size:14.5px;color:var(--ink-faint);margin-top:22px;max-width:680px}
+
+/* ============ CONTACT ============ */
+.contact-box{
+  background:linear-gradient(135deg,var(--bg-card),#181410);
+  border:1px solid rgba(255,177,0,.25);
+  border-radius:8px;padding:clamp(36px,6vw,64px);
+  text-align:center;position:relative;overflow:hidden;
+}
+.contact-box::before{
+  content:"";position:absolute;inset:0;
+  background:radial-gradient(circle at 80% 10%,rgba(255,177,0,.10),transparent 50%);
+  pointer-events:none;
+}
+.contact-box h2{margin:0 auto 14px}
+.contact-box p{color:var(--ink-dim);max-width:560px;margin:0 auto 32px}
+.contact-actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+
+footer{
+  border-top:1px solid var(--line-soft);
+  padding:34px 0 44px;
+  font-family:var(--mono);font-size:12.5px;color:var(--ink-faint);
+}
+.foot-inner{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+.foot-inner a{color:var(--ink-dim)}
+.foot-inner a:hover{color:var(--amber)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#top"><b>Carlos</b><span class="logo-sub">Molina Martínez</span></a>
+    <div class="nav-links">
+      <a href="#profile">Profile</a>
+      <a href="#stack">Stack</a>
+      <a href="#journey">Journey</a>
+      <a href="#projects">Projects</a>
+      <a href="#log">Field&nbsp;Log</a>
+    </div>
+    <a class="nav-cta" href="#contact">Get in touch</a>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="top">
+  <div class="wrap">
+    <div class="status-pill"><span class="dot"></span>Open to internships &amp; graduate programs</div>
+    <h1>Engineering<br>meets <span class="accent">data.</span></h1>
+    <p class="hero-sub">
+      I'm <b>Carlos Molina Martínez</b> — a soon-to-be <b>Industrial Engineer</b> building toward
+      <b>Data Engineering</b>, completing a Double Master's in <b>Industrial Engineering &amp; Artificial
+      Intelligence</b>. I turn industrial processes and energy systems into problems data can solve.
+    </p>
+    <div class="hero-meta">
+      <span><b>BASE</b> · Seville, ES</span>
+      <span><b>FOCUS</b> · Data · ML · Energy systems</span>
+      <span><b>STATUS</b> · MSc, class of 2026</span>
+    </div>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="assets/Carlos-Molina-Martinez-CV.pdf" download>↓ Download CV</a>
+      <a class="btn" href="https://github.com/carlosmolina55" target="_blank" rel="noopener">GitHub ↗</a>
+      <a class="btn" href="https://www.linkedin.com/in/carlosmolinamartinez" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="telemetry" aria-hidden="true">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,80 L40,80 L55,30 L70,95 L95,60 L140,60 L160,20 L175,88 L210,70 L260,70 L275,40 L295,90 L330,55 L380,55 L400,15 L415,85 L450,65 L500,65 L515,35 L535,92 L570,58 L600,58 L0,0"
+        fill="none" stroke="#FFB100" stroke-width="1.5" opacity=".8"
+        transform="translate(0,0)" vector-effect="non-scaling-stroke"/>
+      <path d="M600,80 L640,80 L655,30 L670,95 L695,60 L740,60 L760,20 L775,88 L810,70 L860,70 L875,40 L895,90 L930,55 L980,55 L1000,15 L1015,85 L1050,65 L1100,65 L1115,35 L1135,92 L1170,58 L1200,58"
+        fill="none" stroke="#FFB100" stroke-width="1.5" opacity=".8" vector-effect="non-scaling-stroke"/>
+      <path d="M0,100 L1200,100" stroke="#222A36" stroke-width="1"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ================= PROFILE ================= -->
+<section id="profile">
+  <div class="wrap">
+    <div class="sec-label">01 / Profile</div>
+    <h2 class="reveal">From energy systems<br><span class="dim">to data pipelines.</span></h2>
+    <div class="profile-grid">
+      <div class="profile-text reveal">
+        <p>
+          My background is <b>Energy Engineering</b> (Universidad de Sevilla &amp; Universidad de Málaga, spec.
+          Renewable Energies) — power systems, electrical grids, solar, wind and grid integration. That gave me
+          something most data profiles lack: <b>real domain knowledge of how industry and energy actually work.</b>
+        </p>
+        <p>
+          Now I'm completing a <b>Double Master's in Industrial Engineering &amp; AI</b> at Universidad Loyola.
+          The Industrial Engineering track is the degree that <b>professionally qualifies me as an Industrial
+          Engineer</b> — Spain's most versatile engineering profile, spanning industrial installations &amp;
+          construction, automation, manufacturing systems, thermal &amp; hydraulic installations, structural
+          analysis and chemical process engineering. Energy is my specialty, not my limit.
+        </p>
+        <p>
+          The AI track layers the modern stack on top: <b>deep learning, advanced computer vision</b>
+          (OpenCV, YOLO, Roboflow) and <b>MLOps</b> — experiment tracking with MLflow and Weights &amp; Biases,
+          CI/CD pipelines, and deployment with AWS SageMaker.
+        </p>
+        <p>
+          The goal is simple: work where <b>physical infrastructure produces massive data</b> — energy grids,
+          industrial plants, telemetry — and build the systems that turn it into decisions.
+        </p>
+      </div>
+      <div class="fact-stack reveal">
+        <div class="fact"><span class="k">Degree</span><span class="v">BSc Energy Engineering</span></div>
+        <div class="fact"><span class="k">Master's</span><span class="v">Industrial Eng. (chartered) + <em>AI</em> · 2026</span></div>
+        <div class="fact"><span class="k">Languages</span><span class="v">ES native · EN B2→C1 · IT basic</span></div>
+        <div class="fact"><span class="k">International</span><span class="v">Italy · USA · Ireland</span></div>
+        <div class="fact"><span class="k">Latest win</span><span class="v"><em>1st place</em> — AI challenge, Ogathon</span></div>
+        <div class="fact"><span class="k">Mobility</span><span class="v">Open to relocate (EU &amp; intl.)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STACK ================= -->
+<section id="stack">
+  <div class="wrap">
+    <div class="sec-label">02 / Stack</div>
+    <h2 class="reveal">Tools I work with.</h2>
+    <div class="stack-grid">
+      <div class="stack-card reveal" data-num="2.1">
+        <h3>Programming &amp; Data</h3>
+        <div class="desc">Core languages and data handling</div>
+        <div class="chips">
+          <span class="chip hot">Python</span><span class="chip">SQL</span><span class="chip">Pandas</span>
+          <span class="chip">NumPy</span><span class="chip hot">Docker</span><span class="chip">Prefect</span>
+          <span class="chip">Git</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-num="2.2">
+        <h3>Machine Learning &amp; AI</h3>
+        <div class="desc">Modeling, training and evaluation</div>
+        <div class="chips">
+          <span class="chip hot">Scikit-learn</span><span class="chip hot">PyTorch</span><span class="chip">XGBoost</span>
+          <span class="chip">Deep Learning</span><span class="chip">NLP / Embeddings</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-num="2.3">
+        <h3>Computer Vision</h3>
+        <div class="desc">Perception systems for industry</div>
+        <div class="chips">
+          <span class="chip hot">OpenCV</span><span class="chip hot">YOLO</span><span class="chip">Roboflow</span>
+          <span class="chip">CNNs</span><span class="chip">Image pipelines</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-num="2.4">
+        <h3>MLOps &amp; CI/CD</h3>
+        <div class="desc">From notebook to production</div>
+        <div class="chips">
+          <span class="chip hot">MLflow</span><span class="chip hot">CI/CD pipelines</span><span class="chip">Weights &amp; Biases</span>
+          <span class="chip">GitLab automations</span><span class="chip">AWS SageMaker</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-num="2.5">
+        <h3>Visualization &amp; Reporting</h3>
+        <div class="desc">Communicating data to decision-makers</div>
+        <div class="chips">
+          <span class="chip">Power BI (advanced)</span><span class="chip">DAX</span>
+          <span class="chip">Matplotlib · Seaborn</span><span class="chip">MS Office (Word · Excel · PPT)</span>
+        </div>
+      </div>
+      <div class="stack-card reveal" data-num="2.6">
+        <h3>Engineering Domain</h3>
+        <div class="desc">Where the data comes from</div>
+        <div class="chips">
+          <span class="chip hot">Power systems</span><span class="chip">PV design · pvlib</span><span class="chip">RFEM</span>
+          <span class="chip">AutoCAD / Civil3D</span><span class="chip">MS Project</span><span class="chip">Process optimization</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JOURNEY ================= -->
+<section id="journey">
+  <div class="wrap">
+    <div class="sec-label">03 / Journey</div>
+    <h2 class="reveal">Experience &amp; education.</h2>
+    <div class="timeline">
+      <div class="titem now reveal">
+        <div class="when">2025 — 2026 · In progress</div>
+        <h3>Double Master's — Industrial Engineering &amp; Artificial Intelligence</h3>
+        <div class="where">Universidad Loyola · Seville</div>
+        <p>The Industrial Engineering master grants the <b>professional qualification as an Industrial
+        Engineer</b> — covering industrial installations, automation, manufacturing systems, structural
+        analysis, and thermal &amp; hydraulic systems. The AI master adds deep learning, advanced computer
+        vision (OpenCV, YOLO, Roboflow) and MLOps: MLflow, Weights &amp; Biases, CI/CD and AWS SageMaker.</p>
+      </div>
+      <div class="titem reveal">
+        <div class="when">Oct 2024 — Apr 2025</div>
+        <h3>Engineering Intern</h3>
+        <div class="where">WATS Técnicas de Ingeniería · Seville</div>
+        <ul>
+          <li>Data analysis and engineering calculations for photovoltaic plant designs, including a 707&nbsp;kWp floating PV plant.</li>
+          <li>Designed sustainable energy solutions: PV plants and medium-voltage grid connections.</li>
+          <li>Improved technical documentation workflows with data-driven insights; delivered under strict deadlines.</li>
+        </ul>
+      </div>
+      <div class="titem reveal">
+        <div class="when">2020 — 2025</div>
+        <h3>BSc Energy Engineering — Renewable Energies</h3>
+        <div class="where">Universidad de Sevilla &amp; Universidad de Málaga</div>
+        <p>Power systems, electrical grids, renewable technologies (solar, wind, hydro) and grid integration.
+        Erasmus year at Università di Bologna, Italy (2023–24).</p>
+      </div>
+      <div class="titem reveal">
+        <div class="when">2022 — 2023</div>
+        <h3>Student Council &amp; Activities Coordinator</h3>
+        <div class="where">Colegio Mayor San Juan Bosco · Seville</div>
+        <p>Led a team of 23 delegates organizing educational and cultural activities. President of the
+        Entrepreneurship Club for two years.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-label">04 / Projects</div>
+    <h2 class="reveal">Selected work. <span class="dim">Growing list.</span></h2>
+    <div class="proj-grid">
+      <div class="proj reveal">
+        <span class="tag">NLP · Industry challenge</span>
+        <h3>Railway Fault Diagnosis with NLP</h3>
+        <p>24h hackathon (Comillas ICAI × CAF × Kearney): embedding-based NLP system to interpret noisy,
+        unstructured maintenance communications between technicians and operators — robust to outliers
+        and usable on the floor.</p>
+        <a class="plink" href="https://www.linkedin.com/posts/carlosmolinamartinez_trabajo-en-equipo-inteligencia-artificial-activity-7391500789485129728-Vb0w" target="_blank" rel="noopener">Read the story →</a>
+      </div>
+      <div class="proj reveal">
+        <span class="tag">ML · 1st place 🏆</span>
+        <h3>Clinical Risk Prediction — XGBoost</h3>
+        <p>Won the AI challenge at the 4th Ogathon (OGA.ai): predictive model on 60,000 real clinical
+        records with a heavily imbalanced target. Noise cleaning + tuned XGBoost made the difference —
+        in under 3 hours.</p>
+        <a class="plink" href="https://www.linkedin.com/in/carlosmolinamartinez" target="_blank" rel="noopener">Read the story →</a>
+      </div>
+      <div class="proj ghost reveal">
+        <span class="big">+</span>
+        <p>Next project in progress.<br>Watch <a class="plink" href="https://github.com/carlosmolina55" target="_blank" rel="noopener">github.com/carlosmolina55</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FIELD LOG (carousel) ================= -->
+<section id="log">
+  <div class="wrap">
+    <div class="car-head">
+      <div>
+        <div class="sec-label">05 / Field Log</div>
+        <h2 class="reveal" style="margin-bottom:0">Latest activity.</h2>
+      </div>
+      <div class="car-nav">
+        <button class="car-btn" id="prev" aria-label="Previous">←</button>
+        <button class="car-btn" id="next" aria-label="Next">→</button>
+      </div>
+    </div>
+
+    <div class="carousel" id="carousel">
+      <article class="slide">
+        <div class="ph">
+          <img src="assets/img/ogathon.jpg" alt="Winning team at the 4th Ogathon by OGA.ai" loading="lazy">
+          <span class="date">JAN 2026</span>
+        </div>
+        <div class="body">
+          <span class="kind">Hackathon · Victory</span>
+          <h3>1st place — AI challenge at the 4th Ogathon 🏆</h3>
+          <p>Three hours, three challenges, real clinical data. Our XGBoost model on 60k imbalanced
+          records took first place in the AI category.</p>
+          <a class="more" href="https://www.linkedin.com/in/carlosmolinamartinez/recent-activity/all/" target="_blank" rel="noopener">View on LinkedIn ↗</a>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="ph">
+          <img src="assets/img/hackathon-caf.jpg" alt="Team at the X Hackathon for Smart Industry with CAF" loading="lazy">
+          <span class="date">NOV 2025</span>
+        </div>
+        <div class="body">
+          <span class="kind">Hackathon · Smart Industry</span>
+          <h3>NLP for railway maintenance — X Hackathon (CAF × Kearney)</h3>
+          <p>Representing Universidad Loyola: 24 hours to build an embeddings-based NLP system improving
+          fault-management communication for CAF's railway operations.</p>
+          <a class="more" href="https://www.linkedin.com/posts/carlosmolinamartinez_trabajo-en-equipo-inteligencia-artificial-activity-7391500789485129728-Vb0w" target="_blank" rel="noopener">View on LinkedIn ↗</a>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="ph">
+          <img src="assets/img/wats-floating-pv.jpg" alt="Floating photovoltaic plant under construction" loading="lazy">
+          <span class="date">JAN 2025</span>
+        </div>
+        <div class="body">
+          <span class="kind">Site visit · Renewables</span>
+          <h3>On-site at a 707 kWp floating solar plant</h3>
+          <p>During my internship at WATS: construction visit to a floating PV plant the size of a football
+          pitch — better module cooling, less reservoir evaporation, zero land use.</p>
+          <a class="more" href="https://www.linkedin.com/in/carlosmolinamartinez/recent-activity/all/" target="_blank" rel="noopener">View on LinkedIn ↗</a>
+        </div>
+      </article>
+
+      <article class="slide">
+        <div class="ph">
+          <img src="assets/img/erasmus.jpg" alt="Erasmus year in Bologna, Italy" loading="lazy">
+          <span class="date">JUL 2024</span>
+        </div>
+        <div class="body">
+          <span class="kind">International · Erasmus</span>
+          <h3>Closing a year of Erasmus in Bologna 🇮🇹</h3>
+          <p>A full academic year at Università di Bologna: engineering from another perspective, a new
+          language, and the adaptability that comes from living outside the comfort zone.</p>
+          <a class="more" href="https://www.linkedin.com/in/carlosmolinamartinez/recent-activity/all/" target="_blank" rel="noopener">View on LinkedIn ↗</a>
+        </div>
+      </article>
+    </div>
+    <div class="car-dots" id="dots"></div>
+  </div>
+</section>
+
+<!-- ================= TARGETS ================= -->
+<section id="where">
+  <div class="wrap">
+    <div class="sec-label">06 / Where I want to play</div>
+    <h2 class="reveal">Industries where physical systems<br><span class="dim">generate serious data.</span></h2>
+    <div class="targets reveal">
+      <span class="target">Energy &amp; renewables</span>
+      <span class="target">Smart grids</span>
+      <span class="target">Industrial AI &amp; digital twins</span>
+      <span class="target">Motorsport telemetry</span>
+      <span class="target">Aerospace &amp; scientific data</span>
+      <span class="target">Logistics &amp; automation</span>
+      <span class="target">Data platforms</span>
+    </div>
+    <p class="targets-note reveal">
+      I'm targeting graduate programs, placements and internships across Europe — anywhere
+      engineering rigor and large-scale data meet.
+    </p>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <h2>Let's talk.</h2>
+      <p>If you're hiring engineers who understand both the plant floor and the data pipeline,
+      I'd love to hear from you.</p>
+      <div class="contact-actions">
+        <a class="btn btn-primary" href="mailto:carlosmolinamartinez55@gmail.com">✉ carlosmolinamartinez55@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/carlosmolinamartinez" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn" href="assets/Carlos-Molina-Martinez-CV.pdf" download>↓ CV (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-inner">
+    <span>© <span id="yr"></span> Carlos Molina Martínez · Seville, Spain</span>
+    <span>
+      <a href="https://github.com/carlosmolina55" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="https://www.linkedin.com/in/carlosmolinamartinez" target="_blank" rel="noopener">LinkedIn</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+// year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// reveal on scroll
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+}), { threshold: .12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// carousel
+const car = document.getElementById('carousel');
+const slides = [...car.querySelectorAll('.slide')];
+const dotsBox = document.getElementById('dots');
+slides.forEach((_, i) => {
+  const d = document.createElement('span');
+  d.className = 'd' + (i === 0 ? ' on' : '');
+  dotsBox.appendChild(d);
+});
+const dots = [...dotsBox.children];
+const step = () => slides[0].getBoundingClientRect().width + 22;
+
+document.getElementById('next').onclick = () => car.scrollBy({ left: step(), behavior: 'smooth' });
+document.getElementById('prev').onclick = () => car.scrollBy({ left: -step(), behavior: 'smooth' });
+
+car.addEventListener('scroll', () => {
+  const i = Math.min(slides.length - 1, Math.round(car.scrollLeft / step()));
+  dots.forEach((d, j) => d.classList.toggle('on', j === i));
+}, { passive: true });
+
+// gentle auto-advance, pauses on interaction
+let auto = setInterval(advance, 6000);
+function advance() {
+  const max = car.scrollWidth - car.clientWidth - 10;
+  if (car.scrollLeft >= max) car.scrollTo({ left: 0, behavior: 'smooth' });
+  else car.scrollBy({ left: step(), behavior: 'smooth' });
+}
+['pointerdown', 'wheel', 'touchstart'].forEach(ev =>
+  car.addEventListener(ev, () => { clearInterval(auto); auto = setInterval(advance, 9000); }, { passive: true }));
+</script>
+</body>
+</html>

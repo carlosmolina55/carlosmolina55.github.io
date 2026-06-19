@@ -1,0 +1,156 @@
+%==============================================================
+%  CV — Carlos Molina Martínez
+%  Compile with:  pdflatex Carlos-Molina-Martinez-CV.tex
+%  (run twice for correct hyperlinks)
+%
+%  Design: editorial single-column, cobalt accent — matches
+%  the portfolio website (carlosmolina55.github.io)
+%==============================================================
+\documentclass[10.5pt,a4paper]{article}
+
+% ---------- Fonts & encoding ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{XCharter}            % elegant serif (Charter); if missing: tlmgr install xcharter
+\usepackage[scaled=0.92]{helvet} % sans for small labels
+
+% ---------- Layout ----------
+\usepackage[a4paper,top=1.45cm,bottom=1.45cm,left=1.7cm,right=1.7cm]{geometry}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{microtype}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% ---------- Palette (same as the website) ----------
+\definecolor{cobalt}{HTML}{2243B6}
+\definecolor{ink}{HTML}{191714}
+\definecolor{inksoft}{HTML}{4D4A43}
+\definecolor{inkfaint}{HTML}{8A857A}
+\definecolor{hairline}{HTML}{DDD5C6}
+
+\color{ink}
+
+% ---------- Section style ----------
+\titleformat{\section}
+  {\large\bfseries\scshape\color{ink}}
+  {}{0pt}
+  {}
+  [\vspace{-7pt}{\color{cobalt}\rule{1.1cm}{1.6pt}}\,{\color{hairline}\rule{\dimexpr\linewidth-1.1cm-0.25em}{0.5pt}}]
+\titlespacing*{\section}{0pt}{14pt}{8pt}
+
+% ---------- Helpers ----------
+% \entry{left (title)}{right (date)}
+\newcommand{\entry}[2]{%
+  {\textbf{#1}\hfill{\small\color{cobalt}\textsc{#2}}}\par}
+% \where{institution / company — place}
+\newcommand{\where}[1]{{\small\itshape\color{inkfaint}#1}\par\vspace{2pt}}
+% skill group label
+\newcommand{\skill}[1]{{\small\sffamily\bfseries\color{inksoft}#1}}
+
+\newenvironment{bullets}
+  {\begin{itemize}[leftmargin=1.15em,itemsep=1.5pt,parsep=0pt,topsep=2.5pt]
+   \renewcommand\labelitemi{{\color{cobalt}\footnotesize$\bullet$}}}
+  {\end{itemize}}
+
+%==============================================================
+\begin{document}
+
+% ================= HEADER =================
+{\Huge\bfseries Carlos Molina Mart\'inez}\par\vspace{4pt}
+{\large\color{cobalt}\itshape Data Engineer in training \,\textperiodcentered\, Industrial Engineering \& AI}\par
+\vspace{7pt}
+{\small\color{inksoft}%
++34 633 91 85 94 \,\textbar\,
+\href{mailto:carlosmolinamartinez55@gmail.com}{carlosmolinamartinez55@gmail.com} \,\textbar\,
+\href{https://www.linkedin.com/in/carlosmolinamartinez}{linkedin.com/in/carlosmolinamartinez} \,\textbar\,
+\href{https://github.com/carlosmolina55}{github.com/carlosmolina55} \,\textbar\,
+Seville, Spain}\par
+\vspace{6pt}
+{\color{hairline}\rule{\linewidth}{0.8pt}}
+
+% ================= PROFILE =================
+\section{Profile}
+Engineering student completing a \textbf{Double Master's in Industrial Engineering \& Artificial Intelligence}, transitioning into \textbf{Data Engineering and Industrial Analytics}. The Industrial Engineering master grants the \textbf{professional qualification as an Industrial Engineer} --- Spain's most versatile engineering profile --- on top of a BSc in Energy Engineering. I combine real domain knowledge of industry and energy systems with hands-on skills in \textbf{Python, Machine Learning, Computer Vision and MLOps}, and I am actively seeking international graduate programs and internships where physical infrastructure produces large-scale data.
+
+% ================= EDUCATION =================
+\section{Education}
+
+\entry{Double Master's in Industrial Engineering \& Artificial Intelligence}{2025 -- 2026 (expected)}
+\where{Universidad Loyola --- Seville, Spain}
+\begin{bullets}
+  \item The Industrial Engineering master is the \textbf{professionally accrediting degree (Ingeniero Industrial)}: industrial constructions \& installations, automation of systems, manufacturing systems, instrumentation \& electronics, thermal \& hydraulic installations, structural analysis, chemical process industry and management of organisations.
+  \item AI master: \textbf{deep learning}, machine learning, data storage \& processing, \textbf{advanced computer vision} (OpenCV, YOLO, Roboflow) and \textbf{MLOps} --- experiment tracking with MLflow and Weights \& Biases, \textbf{CI/CD pipelines} and deployment with AWS SageMaker.
+\end{bullets}
+\vspace{5pt}
+
+\entry{BSc in Energy Engineering --- Specialisation in Renewable Energies}{2020 -- 2025}
+\where{Universidad de Sevilla \& Universidad de M\'alaga --- Spain}
+\begin{bullets}
+  \item Power systems, electrical grids, renewable energy technologies (solar, wind, hydro) and grid integration of renewables.
+  \item \textbf{Erasmus exchange year} at Alma Mater Studiorum --- Universit\`a di Bologna, Italy (2023--2024).
+\end{bullets}
+
+% ================= EXPERIENCE =================
+\section{Experience}
+
+\entry{Engineering Intern --- WATS T\'ecnicas de Ingenier\'ia}{Oct 2024 -- Apr 2025}
+\where{Seville, Spain --- renewable energy (solar PV) and civil works}
+\begin{bullets}
+  \item Performed data analysis and engineering calculations for photovoltaic plant designs, including a \textbf{707 kWp floating PV plant}.
+  \item Assisted in the design of sustainable energy solutions: PV plants and medium-voltage grid connections.
+  \item Improved technical documentation workflows using data-driven insights; project management and technical reporting under strict deadlines.
+\end{bullets}
+\vspace{5pt}
+
+\entry{Student Council \& Activities Coordinator --- C.M.U. San Juan Bosco}{Oct 2022 -- Jun 2023}
+\where{Seville, Spain}
+\begin{bullets}
+  \item Led a team of \textbf{23 delegates} organising educational and cultural activities; president of the Entrepreneurship Club for two years.
+\end{bullets}
+
+% ================= PROJECTS & AWARDS =================
+\section{Projects \& Awards}
+
+\entry{1st Place --- AI Challenge, 4th Ogathon (OGA.ai)}{Jan 2026}
+\begin{bullets}
+  \item Won the AI category: predictive model on \textbf{60,000 real clinical records} with a heavily imbalanced target. Noise cleaning and a tuned \textbf{XGBoost} model, built in under 3 hours.
+\end{bullets}
+\vspace{5pt}
+
+\entry{Railway Fault Diagnosis with NLP --- X Hackathon for Smart Industry}{Nov 2025}
+\where{Universidad Pontificia Comillas ICAI $\times$ CAF $\times$ Kearney --- representing Universidad Loyola}
+\begin{bullets}
+  \item 24-hour challenge: \textbf{embedding-based NLP system} to interpret noisy, unstructured maintenance communications between technicians and operators --- robust to outliers and usable by field staff.
+\end{bullets}
+
+% ================= TECHNICAL SKILLS =================
+\section{Technical Skills}
+
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{4.1cm}X@{}}
+\skill{Programming \& Data} & Python (advanced, AI/Data focus), SQL, Pandas, NumPy, Docker, Prefect, Git \\[3pt]
+\skill{Machine Learning \& AI} & Scikit-learn, PyTorch, XGBoost, deep learning, NLP / embeddings \\[3pt]
+\skill{Computer Vision} & OpenCV, YOLO, Roboflow, CNNs, image pipelines \\[3pt]
+\skill{MLOps \& CI/CD} & MLflow, Weights \& Biases, CI/CD pipelines, GitLab automations, AWS SageMaker \\[3pt]
+\skill{Visualization \& Reporting} & Power BI (advanced), DAX, Matplotlib, Seaborn, MS Office (Word, Excel, PowerPoint) \\[3pt]
+\skill{Engineering Software} & AutoCAD, Civil3D, RFEM, MS Project, PVGis, pvlib \\
+\end{tabularx}
+
+% ================= LANGUAGES & ADDITIONAL =================
+\section{Languages \& Additional Information}
+
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{4.1cm}X@{}}
+\skill{Languages} & Spanish (native) \,\textperiodcentered\, English (B2, preparing C1; lived in the USA and Ireland) \,\textperiodcentered\, Italian (basic, one academic year in Italy) \\[3pt]
+\skill{Leadership Training} & ``Sputnik 2021'', ``Curious Minds'' (Fundaci\'on Valent\'in de Madariaga), HIL Program (Universidad de Sevilla) \\[3pt]
+\skill{Mobility} & Open to relocation (EU \& international) \,\textperiodcentered\, Driving licence (B) \\[3pt]
+\skill{Interests} & IoT, generative AI, cloud computing, sustainability, hiking, rugby, guitar \\
+\end{tabularx}
+
+\vspace{10pt}
+{\centering\small\color{inkfaint}\itshape References available upon request \,\textperiodcentered\, Portfolio: \href{https://carlosmolina55.github.io}{carlosmolina55.github.io}\par}
+
+\end{document}
